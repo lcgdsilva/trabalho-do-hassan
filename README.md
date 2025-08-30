@@ -1,3 +1,5 @@
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4c1a8bd9-20ea-4ee1-8065-6c87f1298334" />
+
 📚 BibliotecaJS
 Sistema de gerenciamento de biblioteca desenvolvido em JavaScript para controle de acervo de livros, com interface web e versão CLI.
 
