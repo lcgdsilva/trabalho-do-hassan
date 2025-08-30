@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>BibliotecaJS</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>BibliotecaJS</h1>
+
+  <h2>Cadastrar livro</h2>
+  <form id="form-cadastro">
+    <label>Título: <input id="titulo" required></label><br>
+    <label>Autor: <input id="autor" required></label><br>
+    <label>Ano: <input id="ano" required></label><br>
+    <label>Quantidade: <input id="quantidade" type="number" min="1" value="1" required></label><br>
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <h2>Opções</h2>
+  <button id="btn-listar">Listar livros</button>
+  <button id="btn-total">Calcular total</button>
+  <button id="btn-relatorio">Gerar relatório</button>
+  <button id="btn-salvar">Salvar</button>
+  <button id="btn-carregar">Carregar</button>
+  <button id="btn-limpar">Limpar saída</button>
+
+  <h2>Excluir livro</h2>
+  <select id="select-excluir"></select>
+  <button id="btn-excluir">Excluir selecionado</button>
+
+  <h2>Saída</h2>
+  <pre id="console"></pre>
+
+  <script>
+    const STORAGE_KEY = "biblioteca";
+    const consoleEl = document.getElementById("console");
+    const selectExcluir = document.getElementById("select-excluir");
+
+    function log(text) {
+      consoleEl.textContent += text + "\n";
+    }
+
+    function carregarBiblioteca() {
+      const dados = localStorage.getItem(STORAGE_KEY);
+      return dados ? JSON.parse(dados) : [];
+    }
+
+    function salvarBiblioteca(biblioteca) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(biblioteca));
+      log("Biblioteca salva.");
+    }
+
+    function atualizarSelect(biblioteca) {
+      selectExcluir.innerHTML = "";
+      biblioteca.forEach((livro, i) => {
+        const opt = document.createElement("option");
+        opt.value = i;
+        opt.textContent = `${livro.titulo} (${livro.autor})`;
+        selectExcluir.appendChild(opt);
+      });
+    }
+
+    function cadastrarLivros(biblioteca) {
+      const titulo = document.getElementById("titulo").value;
+      const autor = document.getElementById("autor").value;
+      const ano = document.getElementById("ano").value;
+      const quantidade = Number(document.getElementById("quantidade").value);
+
+      biblioteca.push({ titulo, autor, ano, quantidade });
+      log("Livro cadastrado: " + titulo);
+    }
+
+    function listarLivros(biblioteca) {
+      if (biblioteca.length === 0) {
+        log("Nenhum livro cadastrado.");
+        return;
+      }
+      biblioteca.fo
+    }
